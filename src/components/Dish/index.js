@@ -14,7 +14,6 @@ class Dish extends Component {
   }
 
   render() {
-
     const {quantity} = this.state
     return (
       <CartContext.Consumer>
@@ -73,7 +72,6 @@ class Dish extends Component {
             )
           }
 
-
           return (
             <div className="dish-container">
               <div className="left-sec">
@@ -90,50 +88,7 @@ class Dish extends Component {
                   <p className="description">{dishData.dish_description}</p>
 
                   {dishData.dish_Availability ? (
-
-                    dishData.addonCat.length > 0 ? (
-                      <>
-                        <div className="quantity-cont">
-                          <button
-                            type="button"
-                            className="btn"
-                            onClick={onClickMinus}
-                          >
-                            -
-                          </button>
-                          <p className="quantity">{quantity}</p>
-                          <button
-                            type="button"
-                            className="btn"
-                            onClick={onClickPlus}
-                          >
-                            +
-                          </button>
-                        </div>
-                        <p className="available">Customizations available</p>
-                      </>
-                    ) : (
-                      <div className="quantity-cont">
-                        <button
-                          type="button"
-                          className="btn"
-                          onClick={onClickMinus}
-                        >
-                          -
-                        </button>
-                        <p className="quantity">{quantity}</p>
-                        <button
-                          type="button"
-                          className="btn"
-                          onClick={onClickPlus}
-                        >
-                          +
-                        </button>
-                      </div>
-                    )
-
                     fetchAvailableOption()
-
                   ) : (
                     <p className="unavailable">Not available</p>
                   )}
