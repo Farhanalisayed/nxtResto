@@ -1,5 +1,5 @@
 import {Component} from 'react'
-
+import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import RestaurantsHeader from '../RestaurantsHeader'
 import Dish from '../Dish'
@@ -8,6 +8,7 @@ import './index.css'
 
 class AllRestaurant extends Component {
   state = {
+    isLoading: true,
     restaurantsList: [],
     activeCategoryId: 'Salads and Soup',
   }
@@ -38,6 +39,7 @@ class AllRestaurant extends Component {
       )
       const dishesList = theMenu.menuDishes
       this.setState({
+        isLoading: false,
         restaurantsList: dishesList,
       })
     }
@@ -46,6 +48,12 @@ class AllRestaurant extends Component {
   updateActiveCategoryId = activeCategoryId => {
     this.setState({activeCategoryId}, this.getRestaurantsList)
   }
+
+  renderLoader = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="Oval" color="#000000" height={50} width={50} />
+    </div>
+  )
 
   renderRestaurantsList = () => {
     const {restaurantsList} = this.state
@@ -65,7 +73,13 @@ class AllRestaurant extends Component {
   }
 
   render() {
-    return <div>{this.renderRestaurantsList()}</div>
+    const {isLoading} = this.state
+
+    return (
+      <div>
+        {isLoading ? this.renderLoader() : this.renderRestaurantsList()}
+      </div>
+    )
   }
 }
 
