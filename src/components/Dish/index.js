@@ -29,7 +29,6 @@ class Dish extends Component {
           }
 
           const onClickMinus = () => {
-            const {quantity} = this.state
             if (quantity > 0) {
               this.setState(prevState => ({
                 quantity: prevState.quantity - 1,
@@ -44,9 +43,8 @@ class Dish extends Component {
             }
           }
 
-          const fetchAvailableOption = () => {
-            const {quantity} = this.state
-            return dishData.addonCat.length > 0 ? (
+          const fetchAvailableOption = () =>
+            dishData.addonCat.length > 0 ? (
               <>
                 <div className="quantity-cont">
                   <button type="button" className="btn" onClick={onClickMinus}>
@@ -70,7 +68,6 @@ class Dish extends Component {
                 </button>
               </div>
             )
-          }
 
           return (
             <div className="dish-container">
