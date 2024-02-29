@@ -10,6 +10,8 @@ class AllRestaurant extends Component {
   state = {
     isLoading: true,
     restaurantsList: [],
+    categoryList: [],
+    restoName: '',
     activeCategoryId: 'Salads and Soup',
   }
 
@@ -34,12 +36,17 @@ class AllRestaurant extends Component {
         menuId: each.menu_category_id,
         menuDishes: each.category_dishes,
       }))
+      const categories = updatedData.table_menu_list.map(
+        each => each.menu_category,
+      )
       const theMenu = menusList.find(
         each => each.menuCategory === activeCategoryId,
       )
       const dishesList = theMenu.menuDishes
       this.setState({
         isLoading: false,
+        categoryList: categories,
+        restoName: updatedData.restaurant_name,
         restaurantsList: dishesList,
       })
     }
@@ -56,12 +63,13 @@ class AllRestaurant extends Component {
   )
 
   renderRestaurantsList = () => {
-    const {restaurantsList} = this.state
+    const {restaurantsList, restoName, categoryList} = this.state
     return (
       <>
-        <Header />
+        <Header restoName={restoName} />
         <RestaurantsHeader
           updateActiveCategoryId={this.updateActiveCategoryId}
+          categoryList={categoryList}
         />
         <div className="Restaurants-container">
           {restaurantsList.map(each => (
