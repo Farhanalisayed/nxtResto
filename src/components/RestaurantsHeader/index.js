@@ -1,14 +1,6 @@
 import {Component} from 'react'
 
 import './index.css'
-const categories = [
-  'Salads and Soup',
-  'From The Barnyard',
-  'From the Hen House',
-  'Fresh From The Sea',
-  'Biryani',
-  'Fast Food',
-]
 
 class RestaurantsHeader extends Component {
   state = {
@@ -23,10 +15,10 @@ class RestaurantsHeader extends Component {
 
   render() {
     const {activeCategoryId} = this.state
-
+    const {categoryList} = this.props
     return (
       <div className="Restaurants-header">
-        {categories.map(each => (
+        {categoryList.map(each => (
           <button
             onClick={this.onChangeSortBy}
             value={each}
